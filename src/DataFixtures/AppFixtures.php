@@ -33,16 +33,27 @@ class AppFixtures extends Fixture
         $manager->persist($adminRole);
 
         $adminUser = new User();
-        $adminUser->setFirstName('Cédric')
-            ->setLastName('Matyja')
+        $adminUser->setFirstName('Mr')
+            ->setLastName('Bean')
             ->setEmail('admin@site.com')
             ->setHash($this->encoder->encodePassword($adminUser, 'password'))
-            ->setPicture('https://avatars.io/instagram/cedric_mat')
+            ->setPicture('https://avatars.io/twitter/MrBean')
             ->setIntroduction($faker->sentence())
             ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
             ->addUserRole($adminRole);
 
         $manager->persist($adminUser);
+
+        $userUser = new User();
+        $userUser->setFirstName('Lazar')
+            ->setLastName('Angelov')
+            ->setEmail('user@site.com')
+            ->setHash($this->encoder->encodePassword($userUser, 'password'))
+            ->setPicture('https://avatars.io/twitter/Lazar_Angelov')
+            ->setIntroduction($faker->sentence())
+            ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>');
+
+        $manager->persist($userUser);
 
 
         //Gestion des faux users
@@ -79,7 +90,7 @@ class AppFixtures extends Fixture
             $ad = new Ad();
 
             $title = $faker->sentence();
-            $coverImage = $faker->imageUrl(1000, 350, 'cats');
+            $coverImage = $faker->imageUrl(1000, 350, 'city');
             $introduction = $faker->paragraph(2);
             $content = '<p>' . join('</p><p>', $faker->paragraphs(5)) . '</p>';
 
