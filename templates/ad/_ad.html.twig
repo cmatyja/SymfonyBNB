@@ -7,7 +7,7 @@
             <br>
 
             {% if ad.comments | length > 0 %}
-            {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}
+            {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %} ({{ad.comments | length}} avis)
             {% else %}
             <small>Pas encore de note</small>
                 
