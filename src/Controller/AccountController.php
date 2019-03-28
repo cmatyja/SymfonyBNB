@@ -126,17 +126,12 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //on verifie au préalable que le mot de passe actuel correspond bien
-            // if(!password_verify($passwordUpdate->getOldPassword(), $user->getHash())) {
-                
-            // } else {
             $newPassowrd = $passwordUpdate->getNewPassword();
             $hash = $encoder->encodePassword($user, $newPassowrd);
 
             $user->setHash($hash);
             $manager->persist($user);
             $manager->flush();
-            // }
 
             $this->addFlash(
                 'success',
